@@ -12,7 +12,9 @@ post '/img/' do
     File.open(File.dirname(__FILE__) + '/public/cache/' + filename, 'w') do |f|
       f.write(bits)
     end
-    response.headers['Access-Control-Allow-Origin'] = '*'
+    # Set cross origin header if you need it
+    # Next line allows use from anywhere
+    # response.headers['Access-Control-Allow-Origin'] = '*'
     content_type :json
     { :url => request.url.gsub(/img.?$/, '') + 'cache/' + filename}.to_json
   end
